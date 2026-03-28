@@ -50,7 +50,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
-
         <!-- H2 Database (for testing) -->
         <dependency>
             <groupId>com.h2database</groupId>

@@ -1,117 +1,163 @@
-/* Reset some default styles */
+/* Reset & basic styles */
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Page background */
 body {
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    height: 100vh;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 20px;
 }
 
-/* Main container */
+/* Container */
 .container {
-    background: #ffffff;
-    padding: 30px 40px;
+    background-color: #fff;
+    padding: 40px 30px;
     border-radius: 12px;
-    width: 400px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    width: 100%;
+    max-width: 500px;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
-/* Heading */
+.container:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
 .container h1 {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 35px;
     color: #333;
+    font-size: 28px;
 }
 
-/* Form group spacing */
+/* Form group with floating labels */
 .form-group {
-    margin-bottom: 15px;
+    position: relative;
+    margin-bottom: 25px;
 }
 
-/* Labels */
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: 600;
-    color: #555;
-}
-
-/* Inputs and textarea */
 .form-group input,
 .form-group textarea {
     width: 100%;
-    padding: 10px;
+    padding: 18px 15px 6px 15px; /* space for label */
+    font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 8px;
-    font-size: 14px;
-    transition: 0.3s;
+    outline: none;
+    transition: all 0.3s ease;
 }
 
-/* Focus effect */
+.form-group textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+.form-group label {
+    position: absolute;
+    top: 16px;
+    left: 15px;
+    font-size: 16px;
+    color: #888;
+    font-weight: 500;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    background-color: #fff;
+    padding: 0 5px;
+}
+
+/* Float label on focus or input */
+.form-group input:focus + label,
+.form-group textarea:focus + label,
+.form-group input:not(:placeholder-shown) + label,
+.form-group textarea:not(:placeholder-shown) + label {
+    top: -10px;
+    left: 10px;
+    font-size: 12px;
+    color: #2575fc;
+}
+
+/* Input focus effect */
 .form-group input:focus,
 .form-group textarea:focus {
-    border-color: #667eea;
-    outline: none;
-    box-shadow: 0 0 5px rgba(102, 126, 234, 0.5);
+    border-color: #2575fc;
+    box-shadow: 0 0 10px rgba(37,117,252,0.3);
+}
+
+/* Error messages */
+.form-group p[th\\:errors] {
+    font-size: 13px;
+    margin-top: 5px;
+    color: #e53935;
 }
 
 /* Buttons */
-.form-group button {
-    padding: 10px 15px;
+button {
+    padding: 12px 25px;
     border: none;
     border-radius: 8px;
+    font-size: 16px;
     cursor: pointer;
-    font-size: 14px;
-    margin-right: 10px;
-    transition: 0.3s;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
-/* Submit button */
 button[type="submit"] {
-    background-color: #667eea;
-    color: white;
+    background-color: #2575fc;
+    color: #fff;
+    margin-right: 10px;
 }
 
 button[type="submit"]:hover {
-    background-color: #5a67d8;
+    background-color: #6a11cb;
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
 }
 
-/* Reset button */
 button[type="reset"] {
-    background-color: #e53e3e;
-    color: white;
+    background-color: #f44336;
+    color: #fff;
 }
 
 button[type="reset"]:hover {
-    background-color: #c53030;
+    background-color: #d32f2f;
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
 }
 
-/* Navigation link */
+/* Links */
 a {
-    display: block;
-    text-align: center;
-    margin-top: 10px;
-    color: #667eea;
+    display: inline-block;
     text-decoration: none;
-    font-weight: 500;
+    color: #2575fc;
+    font-weight: 600;
+    transition: all 0.3s ease;
 }
 
 a:hover {
+    color: #6a11cb;
     text-decoration: underline;
 }
 
 /* Responsive */
-@media (max-width: 480px) {
+@media (max-width: 600px) {
     .container {
-        width: 90%;
-        padding: 20px;
+        padding: 30px 20px;
+    }
+
+    button {
+        width: 100%;
+        margin-bottom: 12px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
     }
 }

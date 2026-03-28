@@ -2,8 +2,10 @@ package com.controller;
 
 import com.model.Student;
 import com.service.StudentService;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,10 +24,17 @@ public class StudentController {
         model.addAttribute("student", new Student());
         return "form";
     }
-
     // Save new student
     @PostMapping
-    public String createStudent(@ModelAttribute Student student) {
+    public String createStudent(@Valid @ModelAttribute("student") Student student,
+                                BindingResult result,
+                                Model model) {
+
+        if (result.hasErrors()) {
+            model.addAttribute("student", student); // 👈 IMPORTANT
+            return "form";
+        }
+
         service.createStudent(student);
         return "redirect:/students/list";
     }
