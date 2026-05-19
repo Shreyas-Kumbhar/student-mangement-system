@@ -11,3 +11,5 @@ public class StudManApplication {
 	}
 
 }
+//MySql Database is used.
+//revised
